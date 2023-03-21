@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NodeJS Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="../media/favicon.ico" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div id="input">
+        <h1>NodeJS Example</h1>
+
+        <p>Enter the following</p>
+        
+        <table id="input_options">
+            <colgroup>
+                <col style="width:50%"/>
+                <col style="width:50%"/>
+            </colgroup>
+            <tr>
+                <td class="table_right">First name:</td>
+                <td class="table_left"><input type="text"></td>
+            </tr>
+            <tr>
+                <td class="table_right">Last name:</td>
+                <td class="table_left"><input type="text"></td>
+            </tr>
+            <tr>
+                <td class="table_right">Age:</td>
+                <td class="table_left"><input type="text"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="buttons">
+        <ul id="option_btn">
+            <li><button onclick="postFunction()">POST</button></li>
+            <li><button onclick="getAllFunction()">GET ALL</button></li>
+            <li><input class="ID_input"><button onclick="getByIDFunction()">GET by ID</button></li>
+            <li><button onclick="deleteFunction()">DELETE</button></li>
+            <li><button onclick="patchFunction()">PATCH</button></li>
+        </ul>
+    </div>
+    <div id="result">
+
+    </div>
+
+    <script>
+
+    </script>
+
+</body>
+
+</html>
