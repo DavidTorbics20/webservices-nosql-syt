@@ -1,14 +1,14 @@
-<!DOCTYPE html  PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
-"http://www.w3.org/TR/html4/frameset.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>NodeJS Example</title>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <!--<link rel="icon" type="image/x-icon" href="../media/favicon.ico" />-->
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
 
 <body>
@@ -47,13 +47,13 @@
             <li><button onclick="patchFunction()">PATCH</button></li>
         </ul>
     </div>
-    <div>
-        <form id ="response_table">
+    <div id="output">
+        <form id="response_table">
 
             <!-- PERSON TABLE -->
-            <table id = 'person_table' border = 1>
+            <table id='person_table' border=1>
                 <tr>
-                    <th colspan = '4'>People</th>
+                    <th colspan='4'>People</th>
                 </tr>
                 <tr>
                     <th>Id</th>
@@ -61,9 +61,9 @@
                     <th>Surename</th>
                     <th>Age</th>
                 </tr>
-           </table>
-    </form>
-    
+            </table>
+        </form>
+
     </div>
 
     <script>
@@ -72,7 +72,7 @@
             const lname = document.getElementById("lname").value;
             const age = document.getElementById("age").value;
 
-            const person = {firstName : fname, sureName : lname , age : age}
+            const person = { firstName: fname, sureName: lname, age: age }
 
             const response = await fetch("http://localhost:3000/persons", {
                 method: 'POST',
@@ -87,19 +87,29 @@
             let data = await fetch("http://localhost:3000/persons").then((response) => response.json());
             person_table = document.getElementById('person_table');
 
-            for (value of data) 
-            {
+            for (value of data) {
                 console.log(value)
-                person_table.innerHTML += '<tr><td>' + value._id + 
+                person_table.innerHTML += '<tr><td>' + value._id +
                                           '</td><td>' + value.firstName +
-                                          '</td><td>' + value.sureName + 
-                                          '</td><td>' + value.age +  
+                                          '</td><td>' + value.sureName +
+                                          '</td><td>' + value.age +
                                           '</td></tr>';
             }
         }
 
-        function getByIDFunction() {
+        async function getByIDFunction() {
             const id = document.getElementById("id");
+            let data = await fetch("http://localhost:3000/persons").then((response) => response.json());
+            person_table = document.getElementById('person_table');
+
+            for (value of data) {
+                console.log(value)
+                person_table.innerHTML += '<tr><td>' + value._id +
+                                          '</td><td>' + value.firstName +
+                                          '</td><td>' + value.sureName +
+                                          '</td><td>' + value.age +
+                                          '</td></tr>';
+            }
 
             // if person with this id does not exist write "person does not exist"
         }
@@ -112,7 +122,7 @@
 
         function patchFunction() {
             const id = document.getElementById("id");
-            
+
             // if person with this id does not exist write "person does not exist"
         }
     </script>
