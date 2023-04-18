@@ -26,8 +26,5 @@ services:
 networks:
   app-network:
 
-
 volumes:
   data:
-
-

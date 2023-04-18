@@ -7,6 +7,7 @@ const Person = require("../models/person");
 const jsonParser = bodyParser.json();
 
 router.get("/", async (req, res) => {
+  console.log("Test");
   try {
     const persons = await Person.find();
     res.json(persons);
@@ -74,6 +75,6 @@ async function getPerson(req, res, next) {
 
   res.person = person;
   next();
-} 
+}
 
 module.exports = router;
