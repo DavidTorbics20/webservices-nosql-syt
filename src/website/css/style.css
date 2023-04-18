@@ -1,0 +1,29 @@
+body {
+    font-size: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+table, td {
+    border: none;
+}
+
+.table_left {
+    text-align: left;
+}
+
+.table_right {
+    text-align: right;
+}
+
+li {
+    display: inline;
+    padding: 20px;
+}
+
+button {
+    padding: 10px;
+}
