@@ -74,6 +74,6 @@ async function getPerson(req, res, next) {
 
   res.person = person;
   next();
-}
+} 
 
 module.exports = router;

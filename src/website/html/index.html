@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/x-icon" href="../media/favicon.ico" />
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <!--<link rel="icon" type="image/x-icon" href="../media/favicon.ico" />-->
 </head>
 
 <body>
@@ -15,11 +15,11 @@
         <h1>NodeJS Example</h1>
 
         <p>Enter the following</p>
-        
+
         <table id="input_options">
             <colgroup>
-                <col style="width:50%"/>
-                <col style="width:50%"/>
+                <col style="width:50%" />
+                <col style="width:50%" />
             </colgroup>
             <tr>
                 <td class="table_right">First name:</td>
@@ -37,7 +37,7 @@
     </div>
     <div id="buttons">
         <br></br>
-        Id: <input class="ID_input">
+        Id: <input id="id" type="text">
         <ul id="option_btn">
             <li><button onclick="postFunction()">POST</button></li>
             <li><button onclick="getAllFunction()">GET ALL</button></li>
@@ -46,33 +46,73 @@
             <li><button onclick="patchFunction()">PATCH</button></li>
         </ul>
     </div>
-    <div id="response">
+    <div>
+        <form id ="response_table">
 
+            <!-- PERSON TABLE -->
+            <table id = 'person_table' border = 1>
+                <tr>
+                    <th colspan = '4'>People</th>
+                </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Surename</th>
+                    <th>Age</th>
+                </tr>
+           </table>
+    </form>
+    
     </div>
 
     <script>
-        function postFunction(){
-            const fname = document.getElementById("fname");
-            const lname = document.getElementById("lname");
-            const age = document.getElementById("age");
+        async function postFunction() {
+            const fname = document.getElementById("fname").value;
+            const lname = document.getElementById("lname").value;
+            const age = document.getElementById("age").value;
 
+            const person = {firstName : fname, sureName : lname , age : age}
 
+            const response = await fetch("http://localhost:3000/persons", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(person)
+            });
         }
-        
-        function getAllFunction(){
+
+        async function getAllFunction() {
+            let data = await fetch("http://localhost:3000/persons").then((response) => response.json());
+            person_table = document.getElementById('person_table');
+
+            for (value of data) 
+            {
+                console.log(value)
+                person_table.innerHTML += '<tr><td>' + value._id + 
+                                          '</td><td>' + value.firstName +
+                                          '</td><td>' + value.sureName + 
+                                          '</td><td>' + value.age +  
+                                          '</td></tr>';
+            }
+        }
+
+        function getByIDFunction() {
+            const id = document.getElementById("id");
+
+            // if person with this id does not exist write "person does not exist"
+        }
+
+        function deleteFunction() {
+            const id = document.getElementById("id");
+
+            // if person with this id does not exist write "person does not exist"
+        }
+
+        function patchFunction() {
+            const id = document.getElementById("id");
             
-        }
-        
-        function getByIDFunction(){
-               
-        }
-        
-        function deleteFunction(){
-            
-        }
-        
-        function patchFunction(){
-            
+            // if person with this id does not exist write "person does not exist"
         }
     </script>
 
