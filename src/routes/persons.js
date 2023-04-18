@@ -7,7 +7,6 @@ const Person = require("../models/person");
 const jsonParser = bodyParser.json();
 
 router.get("/", async (req, res) => {
-  console.log("Test");
   try {
     const persons = await Person.find();
     res.json(persons);
@@ -21,7 +20,6 @@ router.get("/:id", getPerson, (req, res) => {
 });
 
 router.post("/", jsonParser, async (req, res) => {
-  console.log(req.body);
   const person = new Person({
     firstName: req.body.firstName,
     sureName: req.body.sureName,
