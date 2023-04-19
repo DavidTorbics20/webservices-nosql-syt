@@ -52,79 +52,25 @@
 
             <!-- PERSON TABLE -->
             <table id='person_table' border=1>
-                <tr>
-                    <th colspan='4'>People</th>
-                </tr>
-                <tr>
-                    <th>Id</th>
-                    <th>Firstname</th>
-                    <th>Surename</th>
-                    <th>Age</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th colspan='4'>People</th>
+                    </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Firstname</th>
+                        <th>Surename</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
             </table>
         </form>
-
+        <h2 id="error_response" value="asd"></h2>
     </div>
 
-    <script>
-        async function postFunction() {
-            const fname = document.getElementById("fname").value;
-            const lname = document.getElementById("lname").value;
-            const age = document.getElementById("age").value;
-
-            const person = { firstName: fname, sureName: lname, age: age }
-
-            const response = await fetch("http://localhost:3000/persons", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(person)
-            });
-        }
-
-        async function getAllFunction() {
-            let data = await fetch("http://localhost:3000/persons").then((response) => response.json());
-            person_table = document.getElementById('person_table');
-
-            for (value of data) {
-                console.log(value)
-                person_table.innerHTML += '<tr><td>' + value._id +
-                                          '</td><td>' + value.firstName +
-                                          '</td><td>' + value.sureName +
-                                          '</td><td>' + value.age +
-                                          '</td></tr>';
-            }
-        }
-
-        async function getByIDFunction() {
-            const id = document.getElementById("id");
-            let data = await fetch("http://localhost:3000/persons").then((response) => response.json());
-            person_table = document.getElementById('person_table');
-
-            for (value of data) {
-                console.log(value)
-                person_table.innerHTML += '<tr><td>' + value._id +
-                                          '</td><td>' + value.firstName +
-                                          '</td><td>' + value.sureName +
-                                          '</td><td>' + value.age +
-                                          '</td></tr>';
-            }
-
-            // if person with this id does not exist write "person does not exist"
-        }
-
-        function deleteFunction() {
-            const id = document.getElementById("id");
-
-            // if person with this id does not exist write "person does not exist"
-        }
-
-        function patchFunction() {
-            const id = document.getElementById("id");
-
-            // if person with this id does not exist write "person does not exist"
-        }
+    <script src="../js/functions.js">
     </script>
 
 </body>
