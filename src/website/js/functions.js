@@ -35,7 +35,6 @@ async function getAllFunction() {
     clearTable(data);
 
     for (value of data) {
-        console.log(value)
         person_table.insertRow().innerHTML += '<tr><td>' + value._id +
                                   '</td><td>' + value.firstName +
                                   '</td><td>' + value.sureName +
@@ -50,7 +49,6 @@ async function getByIDFunction() {
     person_table = document.getElementById('person_table').getElementsByTagName('tbody')[0];;
 
     clearTable(data);
-    console.log(data);
 
     if (id == ""){
         document.getElementById('error_response').innerHTML = "No match!";
