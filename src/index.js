@@ -1,4 +1,5 @@
 var express = require("express");
+const PORT = 3000;
 const path = require('path');
 
 var app = express();
@@ -19,4 +20,4 @@ app.get("/", function (req, res) {
 const personRouter = require("./routes/persons");
 app.use("/persons", personRouter);
 
-app.listen(3000, () => console.log("server started"));
+app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));

@@ -17,7 +17,7 @@ async function postFunction() {
 
     const person = { firstName: fname, sureName: lname, age: age }
 
-    const response = await fetch("http://localhost:3000/persons", {
+    const response = await fetch("http://localhost:27017/persons/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,9 +29,10 @@ async function postFunction() {
 }
 
 async function getAllFunction() {
-    let data = await fetch("http://localhost:3000/persons").then((response) => response.json());
+    let data = await fetch("http://localhost:27017/persons/").then((response) => response.json());
     person_table = document.getElementById('person_table').getElementsByTagName('tbody')[0];
 
+    console.log(data.value)
     clearTable(data);
 
     for (value of data) {
@@ -96,13 +97,11 @@ async function patchFunction() {
 
     const person = { firstName: fname, sureName: lname, age: age }
 
-    
-    if (id == ""){
+        if (id == ""){
         document.getElementById('error_response').innerHTML = "No match!";
     }
     else {
         document.getElementById('error_response').innerHTML = "";
-
         
         const response = await fetch("http://localhost:3000/persons/" + id, {
             method: 'PATCH',
