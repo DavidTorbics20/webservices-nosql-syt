@@ -20,7 +20,6 @@ router.get("/:id", getPerson, (req, res) => {
 });
 
 router.post("/", jsonParser, async (req, res) => {
-  console.log(req.body);
   const person = new Person({
     firstName: req.body.firstName,
     sureName: req.body.sureName,
@@ -74,6 +73,6 @@ async function getPerson(req, res, next) {
 
   res.person = person;
   next();
-} 
+}
 
 module.exports = router;
