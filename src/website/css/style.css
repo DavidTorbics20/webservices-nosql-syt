@@ -24,6 +24,11 @@ li {
     padding: 20px;
 }
 
+#output {
+    width: 60%;
+    margin: 0 auto;
+}
+
 button {
     padding: 10px;
 }
