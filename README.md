@@ -10,7 +10,7 @@ The running of the project **requires Node.js.**
 
 ### **Running localy**
 
-First locate the 'index.js' file. In case it is inside another folder navigate there with 
+First locate the 'index.js' file. The default location of the index.js file is ````./src/index.js```. In case it is inside another folder navigate there with 
 After arriving at the right location run:
 
 ```
@@ -58,4 +58,4 @@ In case the html or the css from the website is missing make sure that "Quirks M
 
 ### **Connecting to MongoDB**
 
-
+When starting MongoDB with ```docker-compose up``` it may accour that you will get this error ```Error: connect ECONNREFUSED 127.0.0.1:27017```. This means that you need to start mongod. In order to do that you first 
