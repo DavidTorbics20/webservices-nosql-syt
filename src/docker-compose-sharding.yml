@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: nodejs-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongos
+    environment:
+      - MONGO_URI=mongodb://mongos:27017/docker_mongodb
+    networks:
+      - app-network
+
+  configserver:
+    image: mongo
+    command: mongod --config /etc/mongod-config.conf --bind_ip_all --configsvr
+    ports:
+      - "27019:27019"
+    volumes:
+      - ./mongod-config.conf:/etc/mongod-config.conf
+    networks:
+      - mongo-shard-network
+
+  shard1:
+    image: mongo
+    command: mongod --config /etc/mongod-shard1.conf --bind_ip_all --shardsvr --replSet rs1
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongod-shard1.conf:/etc/mongod-shard1.conf
+    networks:
+      - mongo-shard-network
+
+  shard2:
+    image: mongo
+    command: mongod --config /etc/mongod-shard2.conf --bind_ip_all --shardsvr --replSet rs2
+    ports:
+      - "27018:27018"
+    volumes:
+      - ./mongod-shard2.conf:/etc/mongod-shard2.conf
+    networks:
+      - mongo-shard-network
+
+  mongos:
+    image: mongo
+    command: mongos --configdb configserver/localhost:27019 --bind_ip_all --port 27017
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongos.conf:/etc/mongos.conf
+    networks:
+      - app-network
+      - mongo-shard-network
+
+networks:
+  app-network:
+  mongo-shard-network:
+    driver: bridge
