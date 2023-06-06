@@ -8,14 +8,16 @@ The actual documentation is to be found in OneNote. This is a guide on how to se
 
 The running of the project **requires Node.js.**
 
-### **Running localy**
+### **Running locally**
 
-First locate the 'index.js' file. The default location of the index.js file is ```./src/index.js```. In case it is inside another folder navigate there with 
+`Btw it´s better to run it on docker`
+
+First locate the 'index.js' file. The default location of the index.js file is `./src/index.js`. In case it is inside another folder navigate there with
 After arriving at the right location run:
 
 ```
 npm i
-node index.js 
+node index.js
 ```
 
 You will find the website if you search 'http://localhost:3000/'
@@ -31,7 +33,7 @@ docker-compose up
 
 ### **File structure**
 
-The files should be sorted in the following way: 
+The files should be sorted in the following way:
 
 ```
 └───src
@@ -49,13 +51,13 @@ The files should be sorted in the following way:
         ├───html
         │   ├─── all html related files
         ├───images
-        │   ├─── all image files 
+        │   ├─── all image files
         │───js
         │   ├─── all js related files
 ```
 
-In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that type ```<!Doctype html>``` at the beginning of the html file.
+In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that type `<!Doctype html>` at the beginning of the html file.
 
 ### **Connecting to MongoDB**
 
-When starting MongoDB with ```docker-compose up``` it may accour that you will get this error ```Error: connect ECONNREFUSED 127.0.0.1:27017```. This means that you need to start mongod. In order to do that you first 
+When starting MongoDB with `docker-compose up` it may accour that you will get this error `Error: connect ECONNREFUSED 127.0.0.1:27017`. This means that you need to start mongod. In order to do that you first

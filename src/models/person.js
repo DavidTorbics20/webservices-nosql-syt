@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Define Person Model, like the schema for a table
 const personSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -15,4 +16,5 @@ const personSchema = new mongoose.Schema({
   },
 });
 
+// register the model with the name "Person"
 module.exports = mongoose.model("Person", personSchema);
