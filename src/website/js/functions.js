@@ -1,10 +1,10 @@
-function clearTable(data) {      
-            
+function clearTable(data) {
+
     const tableBody = document.getElementById('person_table').getElementsByTagName('tbody')[0];
     var length = tableBody.rows.length;
-    if (length != 0){
+    if (length != 0) {
 
-        for (var i = length; i > 0; i--){
+        for (var i = length; i > 0; i--) {
             tableBody.deleteRow(0);
         }
     }
@@ -25,6 +25,8 @@ async function postFunction() {
         body: JSON.stringify(person)
     });
 
+    document.getElementById('error_response').innerHTML = "";
+
     getAllFunction();
 }
 
@@ -33,13 +35,21 @@ async function getAllFunction() {
     person_table = document.getElementById('person_table').getElementsByTagName('tbody')[0];
 
     clearTable(data);
+    console.log(data);
+    console.log(data.length)
 
-    for (value of data) {
-        person_table.insertRow().innerHTML += '<tr><td>' + value._id +
-                                  '</td><td>' + value.firstName +
-                                  '</td><td>' + value.sureName +
-                                  '</td><td>' + value.age +
-                                  '</td></tr>';
+
+    if (data.length === 0) {
+        document.getElementById('error_response').innerHTML = "No match!";
+    }
+    else {
+        for (value of data) {
+            person_table.insertRow().innerHTML += '<tr><td>' + value._id +
+                '</td><td>' + value.firstName +
+                '</td><td>' + value.sureName +
+                '</td><td>' + value.age +
+                '</td></tr>';
+        }
     }
 }
 
@@ -50,62 +60,62 @@ async function getByIDFunction() {
 
     clearTable(data);
 
-    if (id == ""){
-        document.getElementById('error_response').innerHTML = "No match!";
-    }
-    else {
-        document.getElementById('error_response').innerHTML = "";
     
+
+    if (response.ok) {
+        document.getElementById('error_response').innerHTML = "";
+
         person_table.insertRow().innerHTML += '<tr><td>' + data._id +
-                                    '</td><td>' + data.firstName +
-                                    '</td><td>' + data.sureName +
-                                    '</td><td>' + data.age +
-                                    '</td></tr>';
+            '</td><td>' + data.firstName +
+            '</td><td>' + data.sureName +
+            '</td><td>' + data.age +
+            '</td></tr>';
+    } else {
+        document.getElementById('error_response').innerHTML = "No match!";
     }
 }
 
 async function deleteFunction() {
     const id = document.getElementById("id").value;
 
-    if (id == ""){
+    document.getElementById('error_response').innerHTML = "";
+
+    const response = await fetch('http://localhost:3000/persons/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+
+    if (response.ok) {
+        getAllFunction();
+    } else {
         document.getElementById('error_response').innerHTML = "No match!";
     }
-    else {
-        document.getElementById('error_response').innerHTML = "";
-
-        const response = await fetch('http://localhost:3000/persons/' + id, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
-    }
-
-    getAllFunction();
 }
 
 async function patchFunction() {
-    const id = document.getElementById("id").value;            
+    const id = document.getElementById("id").value;
     const fname = document.getElementById("fname").value;
     const lname = document.getElementById("lname").value;
     const age = document.getElementById("age").value;
 
     const person = { firstName: fname, sureName: lname, age: age }
 
-        if (id == ""){
-        document.getElementById('error_response').innerHTML = "No match!";
+    document.getElementById('error_response').innerHTML = "";
+
+    const response = await fetch("http://localhost:3000/persons/" + id, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(person)
+    });
+
+    if (response.ok) {
+        getAllFunction();
     }
     else {
-        document.getElementById('error_response').innerHTML = "";
-        
-        const response = await fetch("http://localhost:3000/persons/" + id, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(person)
-        });
+        document.getElementById('error_response').innerHTML = "No match!";
     }
-
-    getAllFunction();
 }

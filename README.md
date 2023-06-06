@@ -2,7 +2,7 @@
 
 ## **Documentation**
 
-The actual documentation is to be found in OneNote. This is a guide on how to setup and start the 
+The actual documentation is to be found in OneNote. This is a guide on how to setup and start the Node.js application.
 
 ## **Setup**
 
@@ -10,12 +10,12 @@ The running of the project **requires Node.js.**
 
 ### **Running localy**
 
-First locate the 'index.js' file. The default location of the index.js file is ````./src/index.js```. In case it is inside another folder navigate there with 
+First locate the 'index.js' file. The default location of the index.js file is ```./src/index.js```. In case it is inside another folder navigate there with 
 After arriving at the right location run:
 
 ```
 npm i
-node index.js
+node index.js 
 ```
 
 You will find the website if you search 'http://localhost:3000/'
