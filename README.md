@@ -56,6 +56,7 @@ The files should be sorted in the following way:
         │   ├─── all js related files
 ```
 
+
 In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that type `<!Doctype html>` at the beginning of the html file.
 
 ### **Connecting to MongoDB**
