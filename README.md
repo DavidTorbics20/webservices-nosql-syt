@@ -31,6 +31,8 @@ docker-compose build
 docker-compose up
 ```
 
+We highly recomend running it as a docker and not locally.
+
 ### **File structure**
 
 The files should be sorted in the following way:
@@ -56,8 +58,20 @@ The files should be sorted in the following way:
         │   ├─── all js related files
 ```
 
-In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that type `<!Doctype html>` at the beginning of the html file.
+In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that don't forget to type ```<!Doctype html>``` at the beginning of the html file.
 
-### **Connecting to MongoDB**
+### **How to use** 
 
-When starting MongoDB with `docker-compose up` it may accour that you will get this error `Error: connect ECONNREFUSED 127.0.0.1:27017`. This means that you need to start mongod. In order to do that you first
+After you have started the application locally or on a docker connect to it with ```localhost:3000```. Nwo you will hopefully see the example page. 
+
+First, insert some values into the corresponding input fields. After you have done that press the ```POST``` button to push the values onto the database. If you got some values wrong, for example the age, it won't be pushed to the database. After every successful action the whole content of the database is printed. 
+
+Now you've got several options. the ```GET ALL``` button return all the saved data in the database, nothing else. 
+
+If you enter an ID into the ID entry then the next three options will be available. By pressing ```GET by ID``` the person with this specific ID. 
+
+When an existing ID is in the ID field and ```DELETE``` is pressed the person with this specific ID will be removed from the database. 
+
+If you are not satisfied with something and want to change a value just enter the ID of the targeted person and enter the new values into the first name, last namd and age input field. After pressing ```PATCH``` the changes will be applied and changed in the database.
+
+For any action that could not resurt in a valid output a text will appear on screen telling you that you did something wrong. If that happens go over the steps above and make sure that you did everything correctly.
