@@ -1,37 +1,61 @@
-# webservices-nosql-syt
+# **webservices-nosql-syt**
 
-## Documentation
+## **Documentation**
 
-The actual documentation is to be found in OneNote
+The actual documentation is to be found in OneNote. This is a guide on how to setup and start the 
 
-## Setup
+## **Setup**
 
-**Requires Node.js**
+The running of the project **requires Node.js.**
 
-### Running locally
+### **Running localy**
 
-Go into src and run:
+First locate the 'index.js' file. The default location of the index.js file is ````./src/index.js```. In case it is inside another folder navigate there with 
+After arriving at the right location run:
 
 ```
 npm i
-```
-
-then run:
-
-```
 node index.js
 ```
 
-### Running on Docker
+You will find the website if you search 'http://localhost:3000/'
 
-Go into src and run:
+### **Running on Docker**
+
+Go into ./src/ and run:
 
 ```
 docker-compose build
-```
-
-and after that:
-
-```
 docker-compose up
 ```
+
+### **File structure**
+
+The files should be sorted in the following way: 
+
+```
+└───src
+    ├───models
+    │   ├─── person.js
+    ├───node_modules
+    │   ├─── auto generated files
+    │   ├─── ...
+    ├───routes
+    │   ├─── person.js
+    ├─── index.js
+    └───website
+        ├───css
+        │   ├─── all css related files
+        ├───html
+        │   ├─── all html related files
+        ├───images
+        │   ├─── all image files 
+        │───js
+        │   ├─── all js related files
+```
+
+In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that type ```<!Doctype html>``` at the beginning of the html file.
+
+### **Connecting to MongoDB**
+
+When starting MongoDB with ```docker-compose up``` it may accour that you will get this error ```Error: connect ECONNREFUSED 127.0.0.1:27017```. This means that you need to start mongod. In order to do that you first 

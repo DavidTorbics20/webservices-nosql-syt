@@ -8,7 +8,7 @@ var app = express();
 var mongoose = require("mongoose");
 
 const mongoConnection =
-  process.env.MONGO_URI || "mongodb://127.0.0.1:27017/syt-test";
+  process.env.MONGO_URI || `mongodb://localhost:27017/syt-test`;
 
 mongoose.connect(mongoConnection);
 const db = mongoose.connection;
@@ -21,5 +21,7 @@ app.get("/", function (req, res) {
 
 const personRouter = require("./routes/persons");
 app.use("/persons", personRouter);
+
+app.use('/', express.static('./website'));
 
 app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));
