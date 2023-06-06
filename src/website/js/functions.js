@@ -35,9 +35,6 @@ async function getAllFunction() {
     person_table = document.getElementById('person_table').getElementsByTagName('tbody')[0];
 
     clearTable(data);
-    console.log(data);
-    console.log(data.length)
-
 
     if (data.length === 0) {
         document.getElementById('error_response').innerHTML = "No match!";
@@ -57,10 +54,16 @@ async function getByIDFunction() {
     const id = document.getElementById("id").value;
     let data = await fetch(`http://localhost:3000/persons/` + id).then((response) => response.json());
     person_table = document.getElementById('person_table').getElementsByTagName('tbody')[0];;
-
-    clearTable(data);
-
     
+    const response = await fetch('http://localhost:3000/persons/' + id, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+
+    console.log(data)
+    clearTable(data);
 
     if (response.ok) {
         document.getElementById('error_response').innerHTML = "";

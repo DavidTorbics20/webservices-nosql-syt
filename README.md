@@ -54,8 +54,8 @@ The files should be sorted in the following way:
         │   ├─── all js related files
 ```
 
-In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that type ```<!Doctype html>``` at the beginning of the html file.
+In case the html or the css from the website is missing make sure that "Quirks Mode" is deactivated. For that don't forget to type ```<!Doctype html>``` at the beginning of the html file.
 
 ### **Connecting to MongoDB**
 
-When starting MongoDB with ```docker-compose up``` it may accour that you will get this error ```Error: connect ECONNREFUSED 127.0.0.1:27017```. This means that you need to start mongod. In order to do that you first 
+When starting MongoDB with ```docker-compose up``` it may accour that you will get this error ```Error: connect ECONNREFUSED 127.0.0.1:27017```. This means that you need to start mongod. In order to do that you first need to
